@@ -4,7 +4,7 @@ import React from 'react';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area 
 } from 'recharts';
-import { Plus, Clock, CheckCircle2, AlertCircle, Car, Tool, Home } from 'lucide-react';
+import { Plus, Clock, CheckCircle2, AlertCircle, Car, Wrench, Home } from 'lucide-react';
 
 // จำลองข้อมูลกราฟ (ในอนาคตจะดึงจาก Supabase)
 const data = [
@@ -71,16 +71,15 @@ export default function Dashboard() {
           <h3 className="text-lg font-bold text-[#0F1923]">รายการรอดำเนินการ</h3>
         </div>
         <div className="divide-y text-sm">
-          <JobRow title="จองรถ Almera (กข-1234)" user="สมชาย มั่นคง" time="14:00 - 16:00" branch="นนทบุรี" />
-          <JobRow title="ซ่อมก๊อกน้ำอ่างล้างมือ" user="วิภา ใจดี" time="แจ้งเมื่อ 10:30" branch="บางพลับ" />
-          <JobRow title="จองห้องประชุม Boardroom" user="ฝ่ายบุคคล" time="09:00 - 10:30" branch="จตุจักร" />
+          <JobRow title="จองรถ Almera (กข-1234)" user="สมชาย มั่นคง" time="14:00 - 16:00" branch="นนทบุรี" icon={<Car size={16} className="text-slate-400" />} />
+          <JobRow title="ซ่อมก๊อกน้ำอ่างล้างมือ" user="วิภา ใจดี" time="แจ้งเมื่อ 10:30" branch="บางพลับ" icon={<Wrench size={16} className="text-slate-400" />} />
+          <JobRow title="จองห้องประชุม Boardroom" user="ฝ่ายบุคคล" time="09:00 - 10:30" branch="จตุจักร" icon={<Home size={16} className="text-slate-400" />} />
         </div>
       </div>
 
-      {/* 🟡 Floating Action Button (FAB) สีทองที่คุณกิ๊กต้องการ */}
+      {/* 🟡 Floating Action Button (FAB) */}
       <button className="fixed bottom-8 right-8 w-16 h-16 bg-[#E8A020] text-[#0F1923] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
         <Plus size={32} strokeWidth={3} />
-        {/* เมนูย่อยเมื่อเอาเมาส์ไปชี้ (ในอนาคตจะทำให้กดแล้วเด้งเมนู) */}
         <span className="absolute right-20 bg-[#0F1923] text-white px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
           สร้างงานใหม่
         </span>
@@ -103,12 +102,15 @@ function StatCard({ label, value, sub, icon, borderColor }: any) {
   );
 }
 
-function JobRow({ title, user, time, branch }: any) {
+function JobRow({ title, user, time, branch, icon }: any) {
   return (
     <div className="p-4 flex justify-between items-center hover:bg-slate-50 transition cursor-pointer">
-      <div>
-        <p className="font-bold text-[#0F1923]">{title}</p>
-        <p className="text-xs text-slate-500">{user} • {branch}</p>
+      <div className="flex items-center gap-3">
+        <div className="p-2 bg-slate-50 rounded-lg">{icon}</div>
+        <div>
+          <p className="font-bold text-[#0F1923]">{title}</p>
+          <p className="text-xs text-slate-500">{user} • {branch}</p>
+        </div>
       </div>
       <div className="text-right">
         <p className="text-xs font-mono text-slate-400">{time}</p>
