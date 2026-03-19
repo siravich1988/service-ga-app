@@ -1,6 +1,6 @@
 import React from 'react';
 import './globals.css';
-import { LayoutDashboard, Tool, Car, Settings, Bell, User } from 'lucide-react';
+import { LayoutDashboard, Wrench, Car, Settings, Bell, User } from 'lucide-react';
 
 export default function RootLayout({
   children,
@@ -11,7 +11,7 @@ export default function RootLayout({
     <html lang="th">
       <body className="bg-slate-50 text-slate-900 antialiased">
         <div className="flex min-h-screen">
-          {/* Sidebar - สี Ink (#0F1923) ตามสไตล์ที่คุณกิ๊กชอบ */}
+          {/* Sidebar - สี Ink (#0F1923) */}
           <aside className="w-64 bg-[#0F1923] text-white hidden md:flex flex-col sticky top-0 h-screen">
             <div className="p-6">
               <h2 className="text-xl font-bold tracking-wider text-[#E8A020]">GA PRO</h2>
@@ -20,7 +20,7 @@ export default function RootLayout({
             
             <nav className="flex-1 px-4 space-y-2 mt-4">
               <NavItem icon={<LayoutDashboard size={20} />} label="Dashboard" active />
-              <NavItem icon={<Tool size={20} />} label="แจ้งซ่อม/บริการ" />
+              <NavItem icon={<Wrench size={20} />} label="แจ้งซ่อม/บริการ" />
               <NavItem icon={<Car size={20} />} label="จองรถ & ห้อง" />
               <NavItem icon={<Settings size={20} />} label="ตั้งค่า SLA" />
             </nav>
@@ -60,7 +60,7 @@ export default function RootLayout({
               </div>
             </header>
 
-            {/* หน้าเนื้อหา (จะเปลี่ยนไปตามหน้าที่เลือก) */}
+            {/* Content area */}
             <main className="p-8">
               {children}
             </main>
@@ -71,7 +71,6 @@ export default function RootLayout({
   );
 }
 
-// ส่วนประกอบย่อยของปุ่มเมนู
 function NavItem({ icon, label, active = false }: { icon: any, label: string, active?: boolean }) {
   return (
     <button className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
