@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import { Plus, Clock, CheckCircle2, AlertCircle, Car, Wrench, Home } from 'lucide-react';
 
-// จำลองข้อมูลกราฟ (ในอนาคตจะดึงจาก Supabase)
+// จำลองข้อมูลกราฟ
 const data = [
   { name: 'จ.', jobs: 12 },
   { name: 'อ.', jobs: 19 },
@@ -77,7 +77,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* 🟡 Floating Action Button (FAB) */}
+      {/* Floating Action Button (FAB) */}
       <button className="fixed bottom-8 right-8 w-16 h-16 bg-[#E8A020] text-[#0F1923] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
         <Plus size={32} strokeWidth={3} />
         <span className="absolute right-20 bg-[#0F1923] text-white px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
@@ -88,7 +88,6 @@ export default function Dashboard() {
   );
 }
 
-// UI Components
 function StatCard({ label, value, sub, icon, borderColor }: any) {
   return (
     <div className={`bg-white p-6 rounded-2xl border-2 ${borderColor} shadow-sm`}>
