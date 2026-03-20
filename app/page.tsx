@@ -1,120 +1,79 @@
-'use client';
-
 import React from 'react';
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area 
-} from 'recharts';
-import { Plus, Clock, CheckCircle2, AlertCircle, Car, Wrench, Home } from 'lucide-react';
 
-// จำลองข้อมูลกราฟ
-const data = [
-  { name: 'จ.', jobs: 12 },
-  { name: 'อ.', jobs: 19 },
-  { name: 'พ.', jobs: 15 },
-  { name: 'พฤ.', jobs: 22 },
-  { name: 'ศ.', jobs: 30 },
-];
-
-export default function Dashboard() {
+export default function Home() {
   return (
-    <div className="relative pb-20">
-      {/* ส่วนสถิติ (KPI Cards) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <StatCard 
-          label="งานรออนุมัติ" 
-          value="08" 
-          sub="ต้องตอบรับใน 2 ชม." 
-          icon={<Clock className="text-orange-500" />} 
-          borderColor="border-orange-100"
-        />
-        <StatCard 
-          label="งานดำเนินการอยู่" 
-          value="14" 
-          sub="กำลังเร่งจัดการ" 
-          icon={<AlertCircle className="text-blue-500" />} 
-          borderColor="border-blue-100"
-        />
-        <StatCard 
-          label="เสร็จสิ้นวันนี้" 
-          value="25" 
-          sub="ทำได้เยี่ยมมาก!" 
-          icon={<CheckCircle2 className="text-green-500" />} 
-          borderColor="border-green-100"
-        />
-      </div>
-
-      {/* ส่วนกราฟ (Charts) */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 mb-8">
-        <h3 className="text-lg font-bold mb-6 text-[#0F1923]">ปริมาณงานในสัปดาห์นี้</h3>
-        <div className="h-[300px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data}>
-              <defs>
-                <linearGradient id="colorJobs" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#E8A020" stopOpacity={0.1}/>
-                  <stop offset="95%" stopColor="#E8A020" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-              <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
-              <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
-              <Tooltip />
-              <Area type="monotone" dataKey="jobs" stroke="#E8A020" strokeWidth={3} fillOpacity={1} fill="url(#colorJobs)" />
-            </AreaChart>
-          </ResponsiveContainer>
+    <div className="min-h-screen bg-[#121212] text-gray-100 font-sans">
+      
+      {/* Navbar: แถบเมนูด้านบน */}
+      <nav className="bg-[#1A1A1A] border-b border-[#7A1A2A]/30 px-6 py-4 flex justify-between items-center">
+        <div className="text-2xl font-bold tracking-wider cursor-pointer">
+          <span className="text-[#7A1A2A]">GA</span> <span className="text-white">PRO</span>
         </div>
-      </div>
-
-      {/* รายการงานล่าสุด */}
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-        <div className="p-6 border-b">
-          <h3 className="text-lg font-bold text-[#0F1923]">รายการรอดำเนินการ</h3>
+        <div className="flex gap-4">
+          <button className="text-sm text-gray-300 hover:text-white transition">เข้าสู่ระบบ (Login)</button>
+          <button className="bg-[#7A1A2A] hover:bg-rose-900 text-white px-5 py-2 rounded-md text-sm font-medium transition shadow-lg shadow-rose-900/20">
+            ลงทะเบียน (Register)
+          </button>
         </div>
-        <div className="divide-y text-sm">
-          <JobRow title="จองรถ Almera (กข-1234)" user="สมชาย มั่นคง" time="14:00 - 16:00" branch="นนทบุรี" icon={<Car size={16} className="text-slate-400" />} />
-          <JobRow title="ซ่อมก๊อกน้ำอ่างล้างมือ" user="วิภา ใจดี" time="แจ้งเมื่อ 10:30" branch="บางพลับ" icon={<Wrench size={16} className="text-slate-400" />} />
-          <JobRow title="จองห้องประชุม Boardroom" user="ฝ่ายบุคคล" time="09:00 - 10:30" branch="จตุจักร" icon={<Home size={16} className="text-slate-400" />} />
+      </nav>
+
+      {/* Main Content: พื้นที่เนื้อหาหลัก */}
+      <main className="max-w-6xl mx-auto p-6 mt-8">
+        
+        {/* Section 1: ประกาศจาก GA (Announcements) */}
+        <div className="bg-gradient-to-r from-[#7A1A2A]/20 to-transparent border-l-4 border-[#7A1A2A] p-5 rounded-r-md mb-10">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-xl">📢</span>
+            <h2 className="text-lg font-semibold text-rose-400">ประกาศจากแผนก GA (Announcements)</h2>
+          </div>
+          <p className="text-sm text-gray-300 leading-relaxed">
+            ยินดีต้อนรับสู่ระบบ GA Pro รูปแบบใหม่! เริ่มตั้งแต่วันนี้ พนักงานทุกท่านสามารถใช้ระบบนี้ในการแจ้งซ่อมแซมอาคารสถานที่, จองห้องประชุม และจองรถยนต์ส่วนกลางได้ด้วยตัวเองผ่านมือถือและคอมพิวเตอร์ครับ
+          </p>
         </div>
-      </div>
 
-      {/* Floating Action Button (FAB) สีทอง */}
-      <button className="fixed bottom-8 right-8 w-16 h-16 bg-[#E8A020] text-[#0F1923] rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
-        <Plus size={32} strokeWidth={3} />
-        <span className="absolute right-20 bg-[#0F1923] text-white px-4 py-2 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-          สร้างงานใหม่
-        </span>
-      </button>
-    </div>
-  );
-}
+        {/* Section 2: เมนูบริการหลัก (Main Services) */}
+        <h3 className="text-xl font-medium mb-6 border-b border-gray-800 pb-2">เลือกบริการที่ต้องการ (Services)</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* Card 1: ระบบแจ้งซ่อม */}
+          <div className="bg-[#1E1E1E] border border-gray-800 hover:border-[#7A1A2A] rounded-xl p-6 transition-all duration-300 group cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-[#7A1A2A]/10">
+            <div className="w-14 h-14 bg-[#121212] border border-gray-800 rounded-lg flex items-center justify-center mb-4 group-hover:border-[#7A1A2A] transition">
+              <span className="text-2xl">🔧</span>
+            </div>
+            <h4 className="text-lg font-semibold mb-2">ระบบแจ้งซ่อม</h4>
+            <p className="text-sm text-gray-400 mb-6 min-h-[40px]">แจ้งปัญหาแอร์ น้ำ ไฟฟ้า และอาคารสถานที่ พร้อมติดตามสถานะงานแบบ Real-time</p>
+            <div className="flex items-center text-[#7A1A2A] font-medium text-sm group-hover:text-rose-400 transition">
+              สร้างรายการแจ้งซ่อม <span className="ml-2 group-hover:translate-x-1 transition">→</span>
+            </div>
+          </div>
 
-function StatCard({ label, value, sub, icon, borderColor }: any) {
-  return (
-    <div className={`bg-white p-6 rounded-2xl border-2 ${borderColor} shadow-sm`}>
-      <div className="flex justify-between items-start mb-4">
-        <div className="p-2 bg-slate-50 rounded-lg">{icon}</div>
-      </div>
-      <p className="text-sm font-medium text-slate-500">{label}</p>
-      <h4 className="text-3xl font-bold text-[#0F1923] my-1">{value}</h4>
-      <p className="text-[10px] text-slate-400 font-bold uppercase">{sub}</p>
-    </div>
-  );
-}
+          {/* Card 2: จองห้องประชุม */}
+          <div className="bg-[#1E1E1E] border border-gray-800 hover:border-[#7A1A2A] rounded-xl p-6 transition-all duration-300 group cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-[#7A1A2A]/10">
+            <div className="w-14 h-14 bg-[#121212] border border-gray-800 rounded-lg flex items-center justify-center mb-4 group-hover:border-[#7A1A2A] transition">
+              <span className="text-2xl">🤝</span>
+            </div>
+            <h4 className="text-lg font-semibold mb-2">จองห้องประชุม</h4>
+            <p className="text-sm text-gray-400 mb-6 min-h-[40px]">ตรวจสอบตารางห้องว่าง และทำการจองห้องประชุมล่วงหน้าได้ทันที</p>
+            <div className="flex items-center text-[#7A1A2A] font-medium text-sm group-hover:text-rose-400 transition">
+              ดูห้องว่างและจอง <span className="ml-2 group-hover:translate-x-1 transition">→</span>
+            </div>
+          </div>
 
-function JobRow({ title, user, time, branch, icon }: any) {
-  return (
-    <div className="p-4 flex justify-between items-center hover:bg-slate-50 transition cursor-pointer">
-      <div className="flex items-center gap-3">
-        <div className="p-2 bg-slate-50 rounded-lg">{icon}</div>
-        <div>
-          <p className="font-bold text-[#0F1923]">{title}</p>
-          <p className="text-xs text-slate-500">{user} • {branch}</p>
+          {/* Card 3: จองรถยนต์ส่วนกลาง */}
+          <div className="bg-[#1E1E1E] border border-gray-800 hover:border-[#7A1A2A] rounded-xl p-6 transition-all duration-300 group cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-[#7A1A2A]/10">
+            <div className="w-14 h-14 bg-[#121212] border border-gray-800 rounded-lg flex items-center justify-center mb-4 group-hover:border-[#7A1A2A] transition">
+              <span className="text-2xl">🚗</span>
+            </div>
+            <h4 className="text-lg font-semibold mb-2">จองรถยนต์ส่วนกลาง</h4>
+            <p className="text-sm text-gray-400 mb-6 min-h-[40px]">เช็คตารางรถยนต์ว่าง และจองรถสำหรับออกไปปฏิบัติงานภายนอก</p>
+            <div className="flex items-center text-[#7A1A2A] font-medium text-sm group-hover:text-rose-400 transition">
+              เลือกรถยนต์ <span className="ml-2 group-hover:translate-x-1 transition">→</span>
+            </div>
+          </div>
+
         </div>
-      </div>
-      <div className="text-right">
-        <p className="text-xs font-mono text-slate-400">{time}</p>
-        <button className="text-[10px] font-bold text-[#0066CC] hover:underline mt-1">ดูรายละเอียด</button>
-      </div>
+      </main>
     </div>
   );
 }
