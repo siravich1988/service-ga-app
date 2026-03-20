@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 export default function RepairPage() {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     request_type: '',
     title: '',
@@ -32,21 +30,20 @@ export default function RepairPage() {
     e.preventDefault();
     console.log('Submitting Data:', formData, 'File:', file);
     alert('ส่งรายการแจ้งซ่อมสำเร็จ! ระบบจะพากลับไปหน้าหลักครับ');
-    router.push('/');
+    window.location.href = '/'; // บังคับเตะกลับหน้าแรกแบบคลาสสิก
   };
 
   return (
     <div className="min-h-screen bg-[#121212] text-gray-100 p-6 font-sans">
       <div className="max-w-4xl mx-auto mt-10">
         
-        {/* เปลี่ยนจาก Link มาใช้ปุ่ม Button เพื่อบังคับ Router ให้ทำงานชัวร์ๆ */}
-        <button 
-          onClick={() => router.push('/')} 
-          type="button"
-          className="text-[#7A1A2A] hover:text-rose-400 mb-6 flex items-center gap-2 transition cursor-pointer font-medium"
+        {/* ท่าไม้ตาย: ใช้แท็ก <a> บังคับเบราว์เซอร์ให้รีเฟรชกลับหน้าหลัก */}
+        <a 
+          href="/" 
+          className="inline-flex text-[#7A1A2A] hover:text-rose-400 mb-6 items-center gap-2 transition cursor-pointer font-medium"
         >
           <span className="text-xl">←</span> กลับหน้าหลัก (Back to Home)
-        </button>
+        </a>
         
         <div className="bg-[#1E1E1E] border border-gray-800 rounded-xl p-10 shadow-xl border-t-4 border-t-[#7A1A2A]">
           <h1 className="text-3xl font-bold mb-1 text-rose-400 flex items-center gap-3">
